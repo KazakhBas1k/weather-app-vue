@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --primary: #FFFFFF;
+    --primary-inverted: #000000;
+    --main-bg: #343D4B;
+    --card-bg: #222831;
+    --second-bg: #272E37;
+    --second-bg-inverted: #3A434F;
+    --placeholder: #3F4958;
+    --gradient: linear-gradient(90.8deg, rgba(144, 217, 224, 0.9) 0.2%, rgba(84, 96, 230, 0.9) 100%);
+    --gradient-inverted: linear-gradient(256.33deg, rgba(144, 217, 224, 0.9) 9.04%, rgba(84, 96, 230, 0.9) 92.2%);
+    --font: "Montserrat", sans-serif;
+}
+
+* {
+	box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+}
+
+body {
+	font-family: var(--font);
+	color: var(--primary);
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background-color: var(--main-bg);
+	display: grid;
+	place-items: center;
+	min-height: 100vh;
+}
