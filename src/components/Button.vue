@@ -1,11 +1,22 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const props = defineProps({
+  text: String,
+});
+</script>
 
 <template>
-  <button class="button">Button</button>
+  <button class="button">
+    <slot name="icon" />
+    {{ props.text }}
+  </button>
 </template>
 
 <style scoped>
 .button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 9px;
   border: none;
   border-radius: 10px;
   background: var(--gradient);
