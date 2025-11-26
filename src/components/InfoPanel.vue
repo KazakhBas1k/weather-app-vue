@@ -1,26 +1,29 @@
 <script setup lang="ts">
-import { computed } from "vue";
-import IconLocation from "../icons/IconLocation.vue";
+import { computed, type ComputedRef } from "vue";
 import IconSun from "../icons/IconSun.vue";
 import IconCloud from "../icons/IconCloud.vue";
+import IconLocation from "../icons/IconLocation.vue";
 import IconRain from "../icons/IconRain.vue";
 
-const { date, city, weather, temp } = defineProps({
-  date: Date,
-  city: String,
-  weather: String,
-  temp: Number,
-});
-const day: string = computed(() =>
+const { date, city, weather, temp } = defineProps<{
+  date: string | null;
+  city: string | null;
+  temp: number | null;
+  weather: {
+    code: number;
+    text: string;
+  } | null;
+}>();
+const day: ComputedRef<string> = computed(() =>
   date
-    ? date.toLocaleDateString("ru-RU", {
+    ? new Date(date).toLocaleDateString("ru-RU", {
         weekday: "long",
       })
     : "-",
 );
-const dateString: string = computed(() =>
+const dateString: ComputedRef<string> = computed(() =>
   date
-    ? date
+    ? new Date(date)
         .toLocaleDateString("ru-RU", {
           day: "numeric",
           month: "long",
@@ -28,15 +31,6 @@ const dateString: string = computed(() =>
         })
         .slice()
     : "-",
-);
-const weatherString: string = computed(() =>
-  weather === "sun"
-    ? "Солнечно"
-    : weather === "cloud"
-      ? "Облачно"
-      : weather === "rain"
-        ? "Дождливо"
-        : "-",
 );
 </script>
 
@@ -52,11 +46,23 @@ const weatherString: string = computed(() =>
       </span>
     </div>
     <div class="bottom">
-      <IconSun v-if="weather === 'sun'" color="var(--primary)" />
-      <IconCloud v-if="weather === 'cloud'" color="var(--primary)" />
-      <IconRain v-if="weather === 'rain'" color="var(--primary)" />
-      <span>{{ temp || "-" }} °C</span>
-      <p>{{ weatherString }}</p>
+      <IconSun
+        v-if="weather ? weather.code <= 1003 : false"
+        color="var(--primary)"
+        :size="95"
+      />
+      <IconCloud
+        v-if="weather ? weather?.code >= 1006 && weather?.code < 1063 : false"
+        color="var(--primary)"
+        :size="95"
+      />
+      <IconRain
+        v-if="weather ? weather.code >= 1063 : false"
+        color="var(--primary)"
+        :size="95"
+      />
+      <span>{{ temp ? Math.round(temp) : "-" }} °C</span>
+      <p>{{ weather?.text || "-" }}</p>
     </div>
   </div>
 </template>
@@ -119,6 +125,8 @@ const weatherString: string = computed(() =>
 .bottom {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
   gap: 9px;
 }
 

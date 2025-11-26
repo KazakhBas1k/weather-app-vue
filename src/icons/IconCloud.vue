@@ -7,12 +7,11 @@ const { color = "white", size = 54 } = defineProps({
 
 <template>
   <svg
-    width="54"
-    height="54"
+    :width="size"
+    :height="size"
     viewBox="0 0 54 54"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    :style="{ scale: size / 54 }"
   >
     <g clip-path="url(#clip0_102_40)">
       <path
@@ -26,7 +25,7 @@ const { color = "white", size = 54 } = defineProps({
     </g>
     <defs>
       <clipPath id="clip0_102_40">
-        <rect width="54" height="54" :fill="color" />
+        <rect :width="size" :height="size" :fill="color" />
       </clipPath>
     </defs>
   </svg>

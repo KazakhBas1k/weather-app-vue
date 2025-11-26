@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const { color = "white", size = 54 } = defineProps({
   color: String,
   size: Number,
@@ -8,8 +8,8 @@ const { color = "white", size = 54 } = defineProps({
 <template>
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="54"
-    height="54"
+    :width="size"
+    :height="size"
     viewBox="0 0 54 54"
     fill="none"
     :style="{ scale: size / 54 }"
@@ -22,7 +22,7 @@ const { color = "white", size = 54 } = defineProps({
     </g>
     <defs>
       <clipPath id="clip0_4_37">
-        <rect width="54" height="54" :fill="color" />
+        <rect :width="size" :height="size" :fill="color" />
       </clipPath>
     </defs>
   </svg>

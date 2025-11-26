@@ -7,12 +7,11 @@ const { color = "white", size = 54 } = defineProps({
 
 <template>
   <svg
-    width="55"
-    height="55"
+    :width="size"
+    :height="size"
     viewBox="0 0 55 55"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    :style="{ scale: size / 54 }"
   >
     <path
       d="M27.5 2.86458C28.4493 2.86458 29.2188 3.63409 29.2188 4.58333V6.875C29.2188 7.82424 28.4493 8.59375 27.5 8.59375C26.5508 8.59375 25.7813 7.82424 25.7813 6.875V4.58333C25.7813 3.63409 26.5508 2.86458 27.5 2.86458Z"
